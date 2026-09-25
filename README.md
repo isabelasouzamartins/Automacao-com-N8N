@@ -16,6 +16,8 @@ correspondem os requisitos criados no "if" são enviados para o meu e-mail.
 
 - Imagens da tela do usuário
     <img width="951" height="719" alt="image" src="https://github.com/user-attachments/assets/6646902c-3188-48d7-b731-6dfd28b706d9" />
+- Imagens do banco de dados criado
+    <img width="1357" height="428" alt="image" src="https://github.com/user-attachments/assets/2b6f4491-97d6-4ecb-9050-d6d0bb08debc" />
 
 Integração 3: 
 ChatBot em andamento , logo será publicado aqui.
