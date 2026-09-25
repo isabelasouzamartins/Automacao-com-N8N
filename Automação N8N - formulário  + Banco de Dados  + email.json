@@ -1,0 +1,244 @@
+{
+  "name": "form + BD + email",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Contato",
+        "formDescription": "Cadastro de produto do webSite",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nome",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Produto",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "livros A"
+                  },
+                  {
+                    "option": "livro B"
+                  },
+                  {
+                    "option": "livro C"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "valor do livro",
+              "fieldType": "number",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ac7c3135-057d-4249-8296-f553202e1a8d",
+      "name": "On form submission",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        272,
+        144
+      ],
+      "webhookId": "6d149685-f9ca-4a2e-b5e1-cc1182c659d5"
+    },
+    {
+      "parameters": {
+        "sendTo": "=isabelasouzamartins@yahoo.com.br",
+        "subject": "Recebemos sua mensagem ",
+        "message": "=Olá   {{ $json.Nome }} recebemos sua mensagem",
+        "options": {}
+      },
+      "id": "6160c9d4-2b1b-4b97-bbb6-96361a2ae856",
+      "name": "Send a message",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        992,
+        32
+      ],
+      "webhookId": "9e881d6d-8013-4951-be96-9a0f49e16b7d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "NMqSa7hxnFkboiDk",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "tSxFdSO7N4nomRQy",
+          "mode": "list",
+          "cachedResultName": "Cadastro de Produtos",
+          "cachedResultUrl": "/projects/JZzkycyKphQXTfKm/datatables/tSxFdSO7N4nomRQy"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.Email }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nome": "={{ $json.Nome }}",
+            "email": "={{ $json.Email }}",
+            "Produto": "={{ $json.Produto }}",
+            "ValorLivro": "={{ $json['valor do livro'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Produto",
+              "displayName": "Produto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ValorLivro",
+              "displayName": "ValorLivro",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "26cb5847-fdb7-4f66-bcb3-b38baa7bebce",
+      "name": "Upsert row(s)",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        512,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3b1a7b50-edae-454f-a662-08ba9eafb3ad",
+              "leftValue": "={{ $json.ValorLivro }}",
+              "rightValue": 100,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        704,
+        144
+      ],
+      "id": "ef7992e6-997b-4645-8e55-6d825ddffb02",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Upsert row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert row(s)": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "a67e661f-390b-454a-bcac-42da2760a009",
+  "meta": {
+    "instanceId": "d0c6d811fadd8e6075fcc499c668349d551b3c9f16497b2ecf977b7d67830453"
+  },
+  "nodeGroups": [],
+  "id": "xHI37gTuaOrxXCrq",
+  "tags": []
+}
