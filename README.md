@@ -1,4 +1,4 @@
-Automação Inteligente com N8N  com integração de APIs, banco de dados , ChatBot , E-mails, Planilhas. 
+Automação Inteligente com N8N  com integração de APIs, banco de dados , ChatBot , E-mails, Planilhas...
 
 Foi criado 3 fluxos , são esses:
 
@@ -14,6 +14,8 @@ correspondem os requisitos criados no "if" são enviados para o meu e-mail.
 
 <img width="1191" height="659" alt="image" src="https://github.com/user-attachments/assets/fda94dee-f6e6-4645-86c7-9c88b1a83135" />
 
+- Imagens da tela do usuário
+    <img width="951" height="719" alt="image" src="https://github.com/user-attachments/assets/6646902c-3188-48d7-b731-6dfd28b706d9" />
 
 Integração 3: 
 ChatBot em andamento , logo será publicado aqui.
