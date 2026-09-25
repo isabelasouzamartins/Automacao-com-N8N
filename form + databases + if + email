@@ -3,12 +3,12 @@
   "nodes": [
     {
       "parameters": {
-        "formTitle": "Contato",
-        "formDescription": "Cadastro de produto do webSite",
+        "formTitle": "Loja",
+        "formDescription": "Peça seu orçamento agora! ",
         "formFields": {
           "values": [
             {
-              "fieldLabel": "Nome",
+              "fieldLabel": "Nome Completo",
               "requiredField": true
             },
             {
@@ -17,24 +17,25 @@
               "requiredField": true
             },
             {
-              "fieldLabel": "Produto",
-              "fieldType": "dropdown",
+              "fieldLabel": "Produtos Customizáveis ",
+              "fieldType": "=dropdown",
               "fieldOptions": {
                 "values": [
                   {
-                    "option": "livros A"
+                    "option": "Camisas"
                   },
                   {
-                    "option": "livro B"
+                    "option": "Xícaras/copos  "
                   },
                   {
-                    "option": "livro C"
+                    "option": "Chinelos "
                   }
                 ]
-              }
+              },
+              "requiredField": true
             },
             {
-              "fieldLabel": "valor do livro",
+              "fieldLabel": "Quantidade de Itens ",
               "fieldType": "number",
               "requiredField": true
             }
@@ -54,9 +55,9 @@
     },
     {
       "parameters": {
-        "sendTo": "=isabelasouzamartins@yahoo.com.br",
+        "sendTo": "=isabelasouzamartins@yahoo.com.br e {{ $json.email }}",
         "subject": "Recebemos sua mensagem ",
-        "message": "=Olá   {{ $json.Nome }} recebemos sua mensagem",
+        "message": "=Olá  {{ $json.Nome }} !\nRecebemos seu pedido de orçamento de {{ $json.Quant_Itens }}  {{ $json.Produto }}  , em breve entraremos em contato!",
         "options": {}
       },
       "id": "6160c9d4-2b1b-4b97-bbb6-96361a2ae856",
@@ -96,10 +97,10 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "Nome": "={{ $json.Nome }}",
+            "Nome": "={{ $json['Nome Completo'] }}",
             "email": "={{ $json.Email }}",
-            "Produto": "={{ $json.Produto }}",
-            "ValorLivro": "={{ $json['valor do livro'] }}"
+            "Produto": "={{ $json['Produtos Customizáveis '] }}",
+            "Quant_Itens": "={{ $json['Quantidade de Itens '] }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -134,8 +135,8 @@
               "removed": false
             },
             {
-              "id": "ValorLivro",
-              "displayName": "ValorLivro",
+              "id": "Quant_Itens",
+              "displayName": "Quant_Itens",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -170,11 +171,11 @@
           "conditions": [
             {
               "id": "3b1a7b50-edae-454f-a662-08ba9eafb3ad",
-              "leftValue": "={{ $json.ValorLivro }}",
+              "leftValue": "={{ $('On form submission').item.json['Quantidade de Itens '] }}",
               "rightValue": 100,
               "operator": {
                 "type": "number",
-                "operation": "gte"
+                "operation": "gt"
               }
             }
           ],
@@ -234,8 +235,9 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "a67e661f-390b-454a-bcac-42da2760a009",
+  "versionId": "9898352e-f5f4-4142-87c6-4f7474d8c3aa",
   "meta": {
+    "templateCredsSetupCompleted": true,
     "instanceId": "d0c6d811fadd8e6075fcc499c668349d551b3c9f16497b2ecf977b7d67830453"
   },
   "nodeGroups": [],
