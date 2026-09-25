@@ -1,12 +1,10 @@
 Automação Inteligente com N8N  com integração de APIs, banco de dados , ChatBot , E-mails, Planilhas...
 
-Foi criado 3 fluxos , são esses:
+Foi criado 3 fluxos diferentes, são esses:
 
 - Integração 1: 
-Os dados do formulário são salvos para uma planilha , logo na sequência é enviado email de confirmação de recebimento.
-
+Os dados do formulário são salvos em uma planilha , o usuário recebe um e-mail de recebimento do orçamento.
 <img width="742" height="351" alt="image" src="https://github.com/user-attachments/assets/df938fd3-1df0-4bc7-a63e-f796be76c4ee" />
-
 
 - Integração 2: 
 Os dados do formulário são salvos em um banco de dados próprio do N8N , esses dados são tratados e filtrados para aqueles que 
