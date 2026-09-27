@@ -2,16 +2,16 @@ Automação Inteligente com N8N  com integração de APIs, banco de dados , Chat
 
 Foi criado 3 fluxos diferentes, são esses:
 
-- Integração 1:
+- Integração 1: https://isabelasouzamartins.app.n8n.cloud/form/a2f588d4-0e10-42ab-b631-644d53bf43f6
 
     <img width="742" height="351" alt="image" src="https://github.com/user-attachments/assets/df938fd3-1df0-4bc7-a63e-f796be76c4ee" />
 
-- Integração 2:
+- Integração 2: https://isabelasouzamartins.app.n8n.cloud/form/6d149685-f9ca-4a2e-b5e1-cc1182c659d5
 
   
     <img width="1191" height="659" alt="image" src="https://github.com/user-attachments/assets/fda94dee-f6e6-4645-86c7-9c88b1a83135" />
 
-- Integração 3: 
+- Integração 3: https://isabelasouzamartins.app.n8n.cloud/webhook/c3244f42-2241-4104-a775-ac572772d66a/chat
 
 
     <img width="948" height="683" alt="image" src="https://github.com/user-attachments/assets/858a806b-2ac2-4053-82a3-86a3a03a0eba" />
